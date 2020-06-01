@@ -3,7 +3,7 @@ info:
   title: client
   version: '1.0'
 servers:
-  - url: 'http://localhost:3000/api'
+  - url: 'http://nfcstage.appskeeper.com/api'
 paths:
   '/apiversion/{platform}':
     get:
@@ -55,11 +55,6 @@ paths:
         in: path
         required: true
   /normal:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-normal
     post:
       summary: ''
       operationId: post-normal
@@ -106,17 +101,26 @@ paths:
           description: ''
     parameters: []
   /login:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-login
     post:
       summary: ''
       operationId: post-login
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  result:
+                    type: object
+                    properties:
+                      access_token:
+                        type: string
+                      login_type:
+                        type: string
       requestBody:
         content:
           application/json:
