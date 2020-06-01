@@ -20,7 +20,7 @@ paths:
                 type: object
                 properties:
                   code:
-                    type: number
+                    type: integer
                   msg:
                     type: string
                   result:
@@ -139,8 +139,47 @@ paths:
                   type: string
                 device_token:
                   type: string
+  /plateformlist:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    type: object
+                    properties:
+                      selling_platefrom_id:
+                        type: integer
+                      selling_plateform_title:
+                        type: string
+      operationId: get-plateformlist
 components:
-  schemas: {}
+  schemas:
+    SellingPlatform:
+      title: SellingPlatform
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        username:
+          type: string
+        isSelected:
+          type: boolean
+      required:
+        - username
   securitySchemes:
     Authorization:
       type: http
