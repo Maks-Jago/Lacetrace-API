@@ -105,6 +105,36 @@ paths:
           name: content-type
           description: ''
     parameters: []
+  /login:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-login
+    post:
+      summary: ''
+      operationId: post-login
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login_type:
+                  type: string
+                device_type:
+                  type: string
+                device_id:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                device_token:
+                  type: string
 components:
   schemas: {}
   securitySchemes: {}
