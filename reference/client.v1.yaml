@@ -164,6 +164,88 @@ paths:
                       selling_plateform_title:
                         type: string
       operationId: get-plateformlist
+  /merchant:
+    post:
+      summary: ''
+      operationId: post-merchant
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    type: object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                login_type:
+                  type: string
+                user_type:
+                  type: string
+                device_type:
+                  type: string
+                user_lat:
+                  type: string
+                user_long:
+                  type: string
+                address:
+                  type: string
+                website:
+                  type: string
+                selling_plateform:
+                  type: string
+                sales_per_month:
+                  type: string
+                year_since_first_sale:
+                  type: string
+                store_name:
+                  type: string
+                device_token:
+                  type: string
+                device_id:
+                  type: string
+                image:
+                  type: string
+  /forgot:
+    post:
+      summary: ''
+      operationId: post-forgot
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
 components:
   schemas:
     SellingPlatform:
