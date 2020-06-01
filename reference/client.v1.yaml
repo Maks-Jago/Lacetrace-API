@@ -54,5 +54,57 @@ paths:
         name: platform
         in: path
         required: true
+  /normal:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-normal
+    post:
+      summary: ''
+      operationId: post-normal
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login_type:
+                  type: string
+                password:
+                  type: string
+                full_name:
+                  type: string
+                shoes_size:
+                  type: string
+                device_id:
+                  type: string
+                user_type:
+                  type: string
+                device_token:
+                  type: string
+                device_type:
+                  type: string
+                email:
+                  type: string
+                image:
+                  type: string
+            examples: {}
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+        - schema:
+            type: string
+          in: header
+          name: content-type
+          description: ''
+    parameters: []
 components:
   schemas: {}
+  securitySchemes: {}
