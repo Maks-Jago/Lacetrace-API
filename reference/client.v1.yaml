@@ -336,6 +336,95 @@ paths:
               properties:
                 nfc_id:
                   type: string
+                style_number:
+                  type: string
+                size:
+                  type: string
+              required:
+                - nfc_id
+  /addorderid:
+    post:
+      summary: Product update
+      operationId: post-addorderid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    type: object
+                    description: Not used in code; 200 code status sufficient
+                required:
+                  - code
+                  - msg
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                upc_code:
+                  type: string
+                order_number:
+                  type: string
+                tag_id:
+                  type: string
+                product_id:
+                  type: string
+            examples: {}
+  /attachnfc:
+    post:
+      summary: Attach tag
+      operationId: post-attachnfc
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                required:
+                  - code
+                  - msg
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nfc_id:
+                  type: string
+                upc_id:
+                  type: string
+                user_id:
+                  type: string
+                product_id:
+                  type: string
+                product_size:
+                  type: string
+                product_price:
+                  type: string
+                order_id:
+                  type: string
+              required:
+                - nfc_id
+                - upc_id
+                - user_id
+                - product_id
+                - product_size
+                - product_price
 components:
   schemas:
     ProductDetail:
