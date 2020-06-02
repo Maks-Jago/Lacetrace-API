@@ -126,11 +126,20 @@ paths:
                     type: number
                   result:
                     type: object
+                    required:
+                      - access_token
+                      - login_type
                     properties:
                       access_token:
                         type: string
                       login_type:
                         type: string
+                  msg:
+                    type: string
+                required:
+                  - code
+                  - result
+                  - msg
       requestBody:
         content:
           application/json:
@@ -542,8 +551,15 @@ paths:
                     type: string
                   result:
                     type: object
-                    description: |
-                      there is no description of the contents of this parameter in the code, but everything is stored locally.
+                    description: ''
+                    required:
+                      - access_token
+                      - login_type
+                    properties:
+                      access_token:
+                        type: string
+                      login_type:
+                        type: string
                 required:
                   - code
                   - msg
@@ -582,6 +598,72 @@ paths:
                 - device_type
                 - login_type
                 - user_type
+      tags:
+        - authorization
+  /facebook:
+    post:
+      summary: Sign In with Facebook
+      operationId: post-facebook
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    type: object
+                    required:
+                      - login_type
+                      - access_token
+                    properties:
+                      login_type:
+                        type: string
+                      access_token:
+                        type: string
+                required:
+                  - code
+                  - msg
+                  - result
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                full_name:
+                  type: string
+                fb_id:
+                  type: string
+                device_token:
+                  type: string
+                device_type:
+                  type: string
+                login_type:
+                  type: string
+                image:
+                  type: string
+                user_type:
+                  type: string
+                shoes_size:
+                  type: string
+                device_id:
+                  type: string
+              required:
+                - email
+                - fb_id
+                - device_token
+                - device_type
+                - login_type
+                - user_type
+                - device_id
       tags:
         - authorization
 components:
