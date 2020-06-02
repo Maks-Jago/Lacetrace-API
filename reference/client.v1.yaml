@@ -461,6 +461,65 @@ paths:
                 - page_number
                 - type
     parameters: []
+  /merchant-history:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductHistoryList'
+      operationId: get-merchant-history
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page_number:
+                  type: integer
+  /accept-reject-claim:
+    post:
+      summary: Claim product
+      operationId: post-accept-reject-claim
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                claim_id:
+                  type: string
+                type:
+                  type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties: {}
 components:
   schemas:
     ProductDetail:
@@ -595,6 +654,38 @@ components:
           type: integer
         update_type:
           type: integer
+    ProductHistoryList:
+      title: ProductHistoryList
+      type: object
+      properties:
+        product_name:
+          type: string
+        style_number:
+          type: string
+        product_image:
+          type: string
+        brand_name:
+          type: string
+        release_year:
+          type: string
+        product_size:
+          type: string
+        product_id:
+          type: string
+        product_color:
+          type: string
+        upc:
+          type: string
+        product_price:
+          type: string
+        tag_id:
+          type: string
+        sold_status:
+          type: boolean
+        sold_date:
+          type: string
+        category:
+          type: string
   securitySchemes:
     Authorization:
       type: http
