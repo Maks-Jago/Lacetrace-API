@@ -156,6 +156,8 @@ paths:
                 - password
                 - device_token
       description: Api for authorization
+      tags:
+        - authorization
   /plateformlist:
     get:
       summary: Get sales platform list
@@ -281,6 +283,8 @@ paths:
               required:
                 - email
       description: API for authorization changes
+      tags:
+        - password
   /userproductdetail:
     get:
       summary: Get product detail info for client
@@ -520,6 +524,66 @@ paths:
             schema:
               type: object
               properties: {}
+  /google:
+    post:
+      summary: Sign In with Goole
+      operationId: post-google
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    type: object
+                    description: |
+                      there is no description of the contents of this parameter in the code, but everything is stored locally.
+                required:
+                  - code
+                  - msg
+                  - result
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                full_name:
+                  type: string
+                gplus_id:
+                  type: string
+                device_token:
+                  type: string
+                device_type:
+                  type: string
+                login_type:
+                  type: string
+                user_type:
+                  type: string
+                shoes_size:
+                  type: string
+                device_id:
+                  type: string
+                image:
+                  type: string
+              required:
+                - email
+                - full_name
+                - gplus_id
+                - device_token
+                - device_type
+                - login_type
+                - user_type
+      tags:
+        - authorization
 components:
   schemas:
     ProductDetail:
