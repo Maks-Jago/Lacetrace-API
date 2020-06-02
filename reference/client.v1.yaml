@@ -7,7 +7,7 @@ servers:
 paths:
   '/apiversion/{platform}':
     get:
-      summary: apiversion
+      summary: Current app version
       tags: []
       responses:
         '200':
@@ -56,7 +56,7 @@ paths:
         required: true
   /normal:
     post:
-      summary: ''
+      summary: Sign Up for client
       operationId: post-normal
       responses:
         '200':
@@ -87,6 +87,15 @@ paths:
                   type: string
                 image:
                   type: string
+              required:
+                - login_type
+                - password
+                - full_name
+                - shoes_size
+                - device_id
+                - user_type
+                - device_token
+                - email
             examples: {}
       description: ''
       parameters:
@@ -102,7 +111,7 @@ paths:
     parameters: []
   /login:
     post:
-      summary: ''
+      summary: Sign In
       operationId: post-login
       responses:
         '200':
@@ -139,9 +148,16 @@ paths:
                   type: string
                 device_token:
                   type: string
+              required:
+                - login_type
+                - device_type
+                - email
+                - password
+                - device_token
+      description: Api for authorization
   /plateformlist:
     get:
-      summary: Your GET endpoint
+      summary: Get sales platform list
       tags: []
       responses:
         '200':
@@ -164,9 +180,10 @@ paths:
                       selling_plateform_title:
                         type: string
       operationId: get-plateformlist
+      description: Api for merchant account
   /merchant:
     post:
-      summary: ''
+      summary: Create merchant account
       operationId: post-merchant
       responses:
         '200':
@@ -222,9 +239,22 @@ paths:
                   type: string
                 image:
                   type: string
+              required:
+                - full_name
+                - email
+                - phone
+                - login_type
+                - user_type
+                - device_type
+                - address
+                - year_since_first_sale
+                - store_name
+                - device_token
+                - device_id
+      description: ''
   /forgot:
     post:
-      summary: ''
+      summary: Forgot password
       operationId: post-forgot
       responses:
         '200':
@@ -246,6 +276,9 @@ paths:
               properties:
                 email:
                   type: string
+              required:
+                - email
+      description: API for authorization changes
 components:
   schemas:
     SellingPlatform:
