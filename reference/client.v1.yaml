@@ -5,13 +5,18 @@ info:
 servers:
   - url: 'http://nfcstage.appskeeper.com/api'
 paths:
-  '/apiversion/{platform}':
+  /apiversion:
     get:
       summary: Current app version
       tags: []
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
         '':
           description: ''
           content:
@@ -24,14 +29,7 @@ paths:
                   msg:
                     type: string
                   result:
-                    type: object
-                    properties:
-                      version_name:
-                        type: string
-                      platform:
-                        type: string
-                      update_type:
-                        type: string
+                    $ref: '#/components/schemas/ApiVersionModel'
               examples:
                 example:
                   value:
@@ -48,12 +46,15 @@ paths:
               examples: {}
       operationId: get-api-version
       description: API to get the current version of the application
-    parameters:
-      - schema:
-          type: string
-        name: platform
-        in: path
-        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                platform:
+                  type: string
+    parameters: []
   /normal:
     post:
       summary: Sign Up for client
@@ -425,7 +426,7 @@ paths:
                 - product_id
                 - product_size
                 - product_price
-  /getOwnedProducts:
+  /claimproductlist:
     get:
       summary: Get owned products
       tags: []
@@ -459,6 +460,7 @@ paths:
               required:
                 - page_number
                 - type
+    parameters: []
 components:
   schemas:
     ProductDetail:
@@ -583,6 +585,16 @@ components:
           type: integer
         sold_status:
           type: boolean
+    ApiVersionModel:
+      title: ApiVersionModel
+      type: object
+      properties:
+        version_name:
+          type: string
+        platform:
+          type: integer
+        update_type:
+          type: integer
   securitySchemes:
     Authorization:
       type: http
