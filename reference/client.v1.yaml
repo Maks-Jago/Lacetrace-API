@@ -246,9 +246,10 @@ paths:
                 - login_type
                 - user_type
                 - device_type
+                - user_lat
+                - user_long
                 - address
                 - year_since_first_sale
-                - store_name
                 - device_token
                 - device_id
       description: ''
@@ -279,22 +280,142 @@ paths:
               required:
                 - email
       description: API for authorization changes
+  /userproductdetail:
+    get:
+      summary: Get product detail info for client
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    $ref: '#/components/schemas/ProductDetail'
+              examples: {}
+      operationId: get-userproductdetail
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nfc_id:
+                  type: string
+  /productdetail:
+    get:
+      summary: Get product detail info for client
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    $ref: '#/components/schemas/ProductDetail'
+      operationId: get-productdetail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nfc_id:
+                  type: string
 components:
   schemas:
-    SellingPlatform:
-      title: SellingPlatform
+    ProductDetail:
+      title: ProductDetail
       type: object
       properties:
-        id:
-          type: integer
-        name:
+        authenticated_on:
           type: string
-        username:
+        owner_name:
           type: string
-        isSelected:
+        store_logo:
+          type: string
+        owner_id:
+          type: string
+        is_you_owner:
           type: boolean
+        request_status:
+          type: string
+        merchant_name:
+          type: string
+        order_id:
+          type: string
+        parent_owner_id:
+          type: string
+        user_type:
+          type: string
+        current_user_status:
+          type: string
+        upc_number:
+          type: string
+        tag_id:
+          type: string
+        style_number:
+          type: string
+        release_year:
+          type: string
+        product_stock:
+          type: string
+        product_size:
+          type: string
+        product_price:
+          type: string
+        product_name:
+          type: string
+        product_image:
+          type: string
+        product_id:
+          type: string
+        product_color:
+          type: string
+        order_number:
+          type: string
+        modal_number:
+          type: string
+        category:
+          type: string
+        brand_name:
+          type: string
       required:
-        - username
+        - authenticated_on
+        - order_id
+        - parent_owner_id
+        - user_type
+        - current_user_status
+        - upc_number
+        - tag_id
+        - style_number
+        - release_year
+        - product_stock
+        - product_size
+        - product_price
+        - product_name
+        - product_image
+        - product_id
+        - product_color
+        - order_number
+        - modal_number
+        - category
+        - brand_name
+      description: ''
   securitySchemes:
     Authorization:
       type: http
