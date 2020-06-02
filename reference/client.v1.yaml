@@ -425,6 +425,40 @@ paths:
                 - product_id
                 - product_size
                 - product_price
+  /getOwnedProducts:
+    get:
+      summary: Get owned products
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OwnershipHistoryModal'
+      operationId: get-getOwnedProducts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page_number:
+                  type: integer
+                type:
+                  type: integer
+              required:
+                - page_number
+                - type
 components:
   schemas:
     ProductDetail:
@@ -505,6 +539,50 @@ components:
         - category
         - brand_name
       description: ''
+    OwnershipHistoryModal:
+      title: OwnershipHistoryModal
+      type: object
+      properties:
+        product_name:
+          type: string
+        style_number:
+          type: string
+        product_image:
+          type: string
+        color:
+          type: string
+        category:
+          type: string
+        brand_name:
+          type: string
+        release_year:
+          type: string
+        product_size:
+          type: string
+        product_price:
+          type: string
+        upc_number:
+          type: string
+        claim_id:
+          type: string
+        address:
+          type: string
+        request_status:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        full_name:
+          type: string
+        product_id:
+          type: string
+        tag_id:
+          type: string
+        lastCount:
+          type: integer
+        sold_status:
+          type: boolean
   securitySchemes:
     Authorization:
       type: http
