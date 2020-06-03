@@ -896,6 +896,7 @@ paths:
           name: Accesstoken
           description: User identification
           required: true
+      description: ''
   /usereditprofile:
     post:
       summary: Edit user profile
@@ -1315,7 +1316,7 @@ paths:
         - Profile
 components:
   schemas:
-    ProductDetail:
+    ProductData:
       title: ProductDetail
       type: object
       properties:
@@ -1393,7 +1394,7 @@ components:
         - category
         - brand_name
       description: ''
-    OwnershipHistoryModal:
+    OwnerShipHistoryModal:
       title: OwnershipHistoryModal
       type: object
       properties:
@@ -1437,6 +1438,27 @@ components:
           type: integer
         sold_status:
           type: boolean
+      required:
+        - product_name
+        - style_number
+        - product_image
+        - color
+        - category
+        - brand_name
+        - release_year
+        - product_size
+        - product_price
+        - upc_number
+        - claim_id
+        - address
+        - request_status
+        - latitude
+        - longitude
+        - full_name
+        - product_id
+        - tag_id
+        - lastCount
+        - sold_status
     ApiVersionModel:
       title: ApiVersionModel
       type: object
@@ -1447,6 +1469,10 @@ components:
           type: integer
         update_type:
           type: integer
+      required:
+        - version_name
+        - platform
+        - update_type
     ProductHistoryList:
       title: ProductHistoryList
       type: object
@@ -1479,6 +1505,21 @@ components:
           type: string
         category:
           type: string
+      required:
+        - product_name
+        - style_number
+        - product_image
+        - brand_name
+        - release_year
+        - product_size
+        - product_id
+        - product_color
+        - upc
+        - product_price
+        - tag_id
+        - sold_status
+        - sold_date
+        - category
     ProfileModel:
       title: ProfileModel
       type: object
@@ -1513,6 +1554,21 @@ components:
           type: string
         login_type:
           type: string
+      required:
+        - full_name
+        - email
+        - address
+        - shoes_size
+        - year_since_first_sale
+        - user_id
+        - phone
+        - store_name
+        - selling_plateform
+        - website
+        - sales_per_month
+        - image
+        - store_logo
+        - login_type
     SellingPlatform:
       title: SellingPlatform
       type: object
@@ -1523,6 +1579,9 @@ components:
           type: string
         user_name:
           type: string
+      required:
+        - id
+        - name
     ProductHistory:
       title: ProductHistory
       type: object
@@ -1541,6 +1600,14 @@ components:
           type: number
         longitude:
           type: number
+      required:
+        - owner_name
+        - seller_name
+        - user_type
+        - created_at
+        - address
+        - latitude
+        - longitude
   securitySchemes:
     Authorization:
       type: http
