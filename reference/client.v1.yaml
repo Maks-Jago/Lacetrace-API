@@ -490,7 +490,7 @@ paths:
           required: true
   /claimproductlist:
     get:
-      summary: Get owned products
+      summary: Get product list with type
       tags: []
       responses:
         '200':
@@ -518,7 +518,9 @@ paths:
                 page_number:
                   type: integer
                 type:
-                  type: integer
+                  type: array
+                  items:
+                    type: integer
               required:
                 - page_number
                 - type
@@ -1179,6 +1181,42 @@ paths:
               required:
                 - product_id
                 - nfc_id
+  /merchantprofile:
+    get:
+      summary: Get merchant profile
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    $ref: '#/components/schemas/ProfileModel'
+      operationId: get-merchantprofile
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merchant_id:
+                  type: string
+              required:
+                - merchant_id
 components:
   schemas:
     ProductDetail:
