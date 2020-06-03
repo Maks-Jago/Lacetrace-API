@@ -982,13 +982,6 @@ paths:
                     type: string
       tags:
         - password
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Accesstoken
-          description: User identification
-          required: true
       requestBody:
         content:
           application/json:
@@ -1002,6 +995,148 @@ paths:
               required:
                 - old_password
                 - new_password
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
+  /edit_merchant_profile:
+    post:
+      summary: Edit merchant profile
+      operationId: post-edit_merchant_profile
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    $ref: '#/components/schemas/ProfileModel'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                phone:
+                  type: string
+                selling_plateform:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SellingPlatform'
+                sales_per_month:
+                  type: string
+                '':
+                  type: string
+                store_name:
+                  type: string
+                address:
+                  type: string
+                store_logo:
+                  type: string
+                website:
+                  type: string
+                image:
+                  type: string
+              required:
+                - full_name
+                - phone
+                - selling_plateform
+                - sales_per_month
+                - ''
+                - store_name
+                - address
+                - store_logo
+                - website
+                - image
+        description: All fields are required but may be empty
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
+  /claimproduct:
+    post:
+      summary: Claim product
+      operationId: post-claimproduct
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                request_owner_id:
+                  type: string
+                parent_owner_id:
+                  type: string
+                product_id:
+                  type: string
+                nfc_id:
+                  type: string
+                upc_id:
+                  type: string
+                order_id:
+                  type: string
+                type:
+                  type: string
+                latitude:
+                  type: number
+                longitude:
+                  type: number
+                address:
+                  type: string
+                product_size:
+                  type: string
+                product_price:
+                  type: string
+                merchant_id:
+                  type: string
+              required:
+                - request_owner_id
+                - parent_owner_id
+                - product_id
+                - nfc_id
+                - upc_id
+                - order_id
+                - type
+                - latitude
+                - longitude
+                - address
+                - product_size
+                - product_price
+                - merchant_id
+        description: All fields are required but may be empty
 components:
   schemas:
     ProductDetail:
