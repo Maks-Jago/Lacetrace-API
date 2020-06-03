@@ -116,6 +116,8 @@ paths:
           in: header
           name: content-type
           description: ''
+      tags:
+        - authorization
     parameters: []
   /login:
     post:
@@ -177,7 +179,8 @@ paths:
   /plateformlist:
     get:
       summary: Get sales platform list
-      tags: []
+      tags:
+        - Profile
       responses:
         '200':
           description: OK
@@ -286,6 +289,8 @@ paths:
           description: User identification
           required: true
       description: ''
+      tags:
+        - authorization
   /forgot:
     post:
       summary: Forgot password
@@ -534,7 +539,7 @@ paths:
     parameters: []
   /merchant-history:
     get:
-      summary: Your GET endpoint
+      summary: Get merchant history
       tags: []
       responses:
         '200':
@@ -570,7 +575,7 @@ paths:
           required: true
   /accept-reject-claim:
     post:
-      summary: Claim product
+      summary: Reject product
       operationId: post-accept-reject-claim
       responses:
         '200':
@@ -796,7 +801,8 @@ paths:
   /viewprofile:
     get:
       summary: Get user or merchant profile
-      tags: []
+      tags:
+        - Profile
       responses:
         '200':
           description: OK
@@ -870,6 +876,8 @@ paths:
               required:
                 - name
                 - shoes_size
+      tags:
+        - Profile
   /addproduct:
     post:
       summary: Add product
@@ -1069,6 +1077,8 @@ paths:
           name: Accesstoken
           description: User identification
           required: true
+      tags:
+        - Profile
   /claimproduct:
     post:
       summary: Claim product
@@ -1184,7 +1194,6 @@ paths:
   /merchantprofile:
     get:
       summary: Get merchant profile
-      tags: []
       responses:
         '200':
           description: OK
@@ -1217,6 +1226,8 @@ paths:
                   type: string
               required:
                 - merchant_id
+      tags:
+        - Profile
 components:
   schemas:
     ProductDetail:
