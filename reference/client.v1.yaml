@@ -868,6 +868,60 @@ paths:
               required:
                 - name
                 - shoes_size
+  /addproduct:
+    post:
+      summary: Add product
+      operationId: post-addproduct
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                upc_code:
+                  type: string
+                style_number:
+                  type: string
+                product_name:
+                  type: string
+                product_size:
+                  type: string
+                color:
+                  type: string
+                category:
+                  type: string
+                product_image:
+                  type: string
+                price:
+                  type: string
+              required:
+                - upc_code
+                - style_number
+                - product_name
+                - product_size
+                - color
+                - category
+                - product_image
+                - price
 components:
   schemas:
     ProductDetail:
