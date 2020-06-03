@@ -1137,6 +1137,48 @@ paths:
                 - product_price
                 - merchant_id
         description: All fields are required but may be empty
+  /digi-deed:
+    get:
+      summary: Get product history
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductHistory'
+      operationId: get-digi-deed
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                nfc_id:
+                  type: string
+              required:
+                - product_id
+                - nfc_id
 components:
   schemas:
     ProductDetail:
@@ -1347,6 +1389,24 @@ components:
           type: string
         user_name:
           type: string
+    ProductHistory:
+      title: ProductHistory
+      type: object
+      properties:
+        owner_name:
+          type: string
+        seller_name:
+          type: string
+        user_type:
+          type: integer
+        created_at:
+          type: string
+        address:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
   securitySchemes:
     Authorization:
       type: http
