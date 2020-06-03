@@ -54,6 +54,13 @@ paths:
               properties:
                 platform:
                   type: string
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
     parameters: []
   /normal:
     post:
@@ -193,6 +200,13 @@ paths:
                         type: string
       operationId: get-plateformlist
       description: Api for merchant account
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
   /merchant:
     post:
       summary: Create merchant account
@@ -264,6 +278,13 @@ paths:
                 - year_since_first_sale
                 - device_token
                 - device_id
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
       description: ''
   /forgot:
     post:
@@ -323,6 +344,13 @@ paths:
               properties:
                 nfc_id:
                   type: string
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
   /productdetail:
     get:
       summary: Get product detail info for client
@@ -356,6 +384,13 @@ paths:
                   type: string
               required:
                 - nfc_id
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
   /addorderid:
     post:
       summary: Product update
@@ -393,6 +428,13 @@ paths:
                 product_id:
                   type: string
             examples: {}
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
   /attachnfc:
     post:
       summary: Attach tag
@@ -439,6 +481,13 @@ paths:
                 - product_id
                 - product_size
                 - product_price
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
   /claimproductlist:
     get:
       summary: Get owned products
@@ -473,6 +522,13 @@ paths:
               required:
                 - page_number
                 - type
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
     parameters: []
   /merchant-history:
     get:
@@ -503,6 +559,13 @@ paths:
               properties:
                 page_number:
                   type: integer
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
   /accept-reject-claim:
     post:
       summary: Claim product
@@ -533,6 +596,13 @@ paths:
             schema:
               type: object
               properties: {}
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
   /google:
     post:
       summary: Sign In with Goole
@@ -698,6 +768,106 @@ paths:
                 - user_id
                 - password
       description: Api for change password
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
+  /logout:
+    get:
+      summary: Logout
+      tags:
+        - authorization
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
+      operationId: get-logout
+  /viewprofile:
+    get:
+      summary: Get user or merchant profile
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    $ref: '#/components/schemas/ProfileModel'
+                required:
+                  - code
+                  - msg
+      operationId: get-viewprofile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_type:
+                  type: string
+              required:
+                - user_type
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
+  /usereditprofile:
+    post:
+      summary: Edit user profile
+      operationId: post-usereditprofile
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  result:
+                    $ref: '#/components/schemas/ProfileModel'
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                shoes_size:
+                  type: string
+              required:
+                - name
+                - shoes_size
 components:
   schemas:
     ProductDetail:
@@ -864,7 +1034,53 @@ components:
           type: string
         category:
           type: string
+    ProfileModel:
+      title: ProfileModel
+      type: object
+      properties:
+        full_name:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        shoes_size:
+          type: string
+        year_since_first_sale:
+          type: string
+        user_id:
+          type: string
+        phone:
+          type: string
+        store_name:
+          type: string
+        selling_plateform:
+          type: array
+          items:
+            $ref: '#/components/schemas/SellingPlatform'
+        website:
+          type: string
+        sales_per_month:
+          type: string
+        image:
+          type: string
+        store_logo:
+          type: string
+        login_type:
+          type: string
+    SellingPlatform:
+      title: SellingPlatform
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        user_name:
+          type: string
   securitySchemes:
     Authorization:
       type: http
       scheme: basic
+security:
+  - Authorization: []
