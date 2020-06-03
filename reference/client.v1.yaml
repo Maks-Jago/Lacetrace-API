@@ -922,6 +922,48 @@ paths:
                 - category
                 - product_image
                 - price
+  /product/addupc:
+    post:
+      summary: Add upc code to the product
+      operationId: post-product-addupc
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_size:
+                  type: string
+                product_price:
+                  type: string
+                product_id:
+                  type: string
+                upc_id:
+                  type: string
+              required:
+                - product_size
+                - product_price
+                - product_id
+                - upc_id
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accesstoken
+          description: User identification
+          required: true
 components:
   schemas:
     ProductDetail:
