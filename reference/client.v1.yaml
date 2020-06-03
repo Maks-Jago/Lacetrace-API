@@ -58,6 +58,8 @@ paths:
               properties:
                 platform:
                   type: string
+              required:
+                - platform
       parameters:
         - schema:
             type: string
@@ -174,6 +176,7 @@ paths:
               required:
                 - login_type
                 - device_type
+                - device_id
                 - email
                 - password
                 - device_token
@@ -462,6 +465,14 @@ paths:
                   type: string
                 product_id:
                   type: string
+                price:
+                  type: string
+              required:
+                - upc_code
+                - order_number
+                - tag_id
+                - product_id
+                - price
             examples: {}
       parameters:
         - schema:
