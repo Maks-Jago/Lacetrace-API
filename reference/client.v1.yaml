@@ -30,6 +30,10 @@ paths:
                     type: string
                   result:
                     $ref: '#/components/schemas/ApiVersionModel'
+                required:
+                  - code
+                  - msg
+                  - result
               examples:
                 example:
                   value:
@@ -196,11 +200,18 @@ paths:
                     type: string
                   result:
                     type: object
+                    required:
+                      - selling_platefrom_id
+                      - selling_plateform_title
                     properties:
                       selling_platefrom_id:
                         type: integer
                       selling_plateform_title:
                         type: string
+                required:
+                  - code
+                  - msg
+                  - result
       operationId: get-plateformlist
       description: Api for merchant account
       parameters:
@@ -228,6 +239,10 @@ paths:
                     type: string
                   result:
                     type: object
+                required:
+                  - code
+                  - msg
+                  - result
       requestBody:
         content:
           application/json:
@@ -307,6 +322,9 @@ paths:
                     type: integer
                   msg:
                     type: string
+                required:
+                  - code
+                  - msg
       requestBody:
         content:
           application/json:
@@ -338,6 +356,10 @@ paths:
                     type: string
                   result:
                     $ref: '#/components/schemas/ProductDetail'
+                required:
+                  - code
+                  - msg
+                  - result
               examples: {}
       operationId: get-userproductdetail
       description: ''
@@ -349,6 +371,8 @@ paths:
               properties:
                 nfc_id:
                   type: string
+              required:
+                - nfc_id
       parameters:
         - schema:
             type: string
@@ -374,6 +398,10 @@ paths:
                     type: string
                   result:
                     $ref: '#/components/schemas/ProductDetail'
+                required:
+                  - code
+                  - msg
+                  - result
       operationId: get-productdetail
       requestBody:
         content:
@@ -389,6 +417,8 @@ paths:
                   type: string
               required:
                 - nfc_id
+                - style_number
+                - size
       parameters:
         - schema:
             type: string
@@ -513,6 +543,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/OwnershipHistoryModal'
+                required:
+                  - code
+                  - msg
+                  - result
       operationId: get-getOwnedProducts
       requestBody:
         content:
@@ -557,6 +591,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ProductHistoryList'
+                required:
+                  - code
+                  - msg
+                  - result
       operationId: get-merchant-history
       requestBody:
         content:
@@ -566,6 +604,8 @@ paths:
               properties:
                 page_number:
                   type: integer
+              required:
+                - page_number
       parameters:
         - schema:
             type: string
@@ -589,6 +629,9 @@ paths:
                     type: integer
                   msg:
                     type: string
+                required:
+                  - code
+                  - msg
       requestBody:
         content:
           application/json:
@@ -599,6 +642,9 @@ paths:
                   type: string
                 type:
                   type: string
+              required:
+                - claim_id
+                - type
           application/x-www-form-urlencoded:
             schema:
               type: object
@@ -820,6 +866,7 @@ paths:
                 required:
                   - code
                   - msg
+                  - result
       operationId: get-viewprofile
       requestBody:
         content:
@@ -856,6 +903,9 @@ paths:
                     type: string
                   result:
                     $ref: '#/components/schemas/ProfileModel'
+                required:
+                  - code
+                  - msg
       parameters:
         - schema:
             type: string
@@ -894,6 +944,9 @@ paths:
                     type: integer
                   msg:
                     type: string
+                required:
+                  - code
+                  - msg
       parameters:
         - schema:
             type: string
@@ -948,6 +1001,9 @@ paths:
                     type: integer
                   msg:
                     type: string
+                required:
+                  - code
+                  - msg
       requestBody:
         content:
           application/json:
@@ -990,6 +1046,9 @@ paths:
                     type: integer
                   msg:
                     type: string
+                required:
+                  - code
+                  - msg
       tags:
         - password
       requestBody:
@@ -1030,6 +1089,10 @@ paths:
                     type: string
                   result:
                     $ref: '#/components/schemas/ProfileModel'
+                required:
+                  - code
+                  - msg
+                  - result
       requestBody:
         content:
           application/json:
@@ -1095,6 +1158,9 @@ paths:
                     type: integer
                   msg:
                     type: string
+                required:
+                  - code
+                  - msg
       parameters:
         - schema:
             type: string
@@ -1169,6 +1235,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ProductHistory'
+                required:
+                  - code
+                  - msg
+                  - result
       operationId: get-digi-deed
       description: ''
       parameters:
@@ -1208,6 +1278,10 @@ paths:
                     type: string
                   result:
                     $ref: '#/components/schemas/ProfileModel'
+                required:
+                  - code
+                  - msg
+                  - result
       operationId: get-merchantprofile
       parameters:
         - schema:
