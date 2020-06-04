@@ -669,7 +669,7 @@ paths:
           required: true
   /google:
     post:
-      summary: Sign In with Goole
+      summary: Sign In with Google
       operationId: post-google
       responses:
         '200':
